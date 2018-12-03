@@ -160,27 +160,52 @@ class GeneReactTable extends React.Component {
   componentWillMount() {
     console.log("GeneReactTable componentWillMount");
   }
+  /**
+   * GeneReactTable componentWillMount
+   * @return {[type]} [description]
+   */
   componentDidMount() {
     console.log("GeneReactTable componentDidMount");
   }
+  /**
+   * GeneReactTable componentWillMount
+   * @return {[type]} [description]
+   */
   componentWillUpdate() {
     console.log("GeneReactTable componentWillUpdate");
   }
+  /**
+   * GeneReactTable componentWillMount
+   * @return {[type]} [description]
+   */
   componentDidUpdate() {
     console.log("GeneReactTable componentDidUpdate");
   }
-  componentWillReceiveProps(nextProps) {
+  /**
+   * GeneReactTable componentWillMount
+   * @return {[type]} [description]
+   */
+  componentWillReceiveProps(nextProps, nextContext) {
     console.log("GeneReactTable componentWillReceiveProps");
     // this.state = {
     //   ...nextProps
     // };
   }
+  /**
+   * GeneReactTable componentWillMount
+   * @return {[type]} [description]
+   */
   componentWillUnmount() {
     console.log("GeneReactTable componentWillUnmount");
   }
+  /**
+   * GeneReactTable componentWillMount
+   * @return {[type]} [description]
+   */
   componentDidCatch() {
     console.log("GeneReactTable componentDidCatch");
   }
+
   render() {
     const { classes } = this.props;
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state;

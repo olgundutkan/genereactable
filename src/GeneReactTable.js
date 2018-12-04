@@ -23,6 +23,7 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 import GeneReactTableHead from "./GeneReactTableHead";
 import GeneReactTableToolbar from "./GeneReactTableToolbar";
+import GeneReactTableBody from "./GeneReactTableBody";
 
 let counter = 0;
 function createData(name, calories, fat, carbs, protein) {
@@ -235,40 +236,15 @@ class GeneReactTable extends React.Component {
                 onRequestSort={this.handleRequestSort}
                 rowCount={data.length}
               />
-              <TableBody>
-                {stableSort(data, getSorting(order, orderBy))
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map(n => {
-                    const isSelected = this.isSelected(n.id);
-                    return (
-                      <TableRow
-                        hover
-                        onClick={event => this.handleClick(event, n.id)}
-                        role="checkbox"
-                        aria-checked={isSelected}
-                        tabIndex={-1}
-                        key={n.id}
-                        selected={isSelected}
-                      >
-                        <TableCell padding="checkbox">
-                          <Checkbox checked={isSelected} />
-                        </TableCell>
-                        <TableCell component="th" scope="row" padding="none">
-                          {n.name}
-                        </TableCell>
-                        <TableCell numeric>{n.calories}</TableCell>
-                        <TableCell numeric>{n.fat}</TableCell>
-                        <TableCell numeric>{n.carbs}</TableCell>
-                        <TableCell numeric>{n.protein}</TableCell>
-                      </TableRow>
-                    );
-                  })}
-                {emptyRows > 0 && (
-                  <TableRow style={{ height: 49 * emptyRows }}>
-                    <TableCell colSpan={6} />
-                  </TableRow>
-                )}
-              </TableBody>
+              <GeneReactTableBody
+                data={data}
+                selected={selected}
+                order={order}
+                orderBy={orderBy}
+                page={page}
+                rowsPerPage={rowsPerPage}
+                emptyRows={emptyRows}
+              />
             </Table>
           </div>
           <TablePagination

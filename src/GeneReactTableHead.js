@@ -19,7 +19,33 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import { lighten } from "@material-ui/core/styles/colorManipulator";
 
-const styles = theme => ({});
+const styles = theme => ({
+  checkAll: {
+    color: "rgba(255, 255, 255, 0.84)"
+  },
+  tableSortLabel: {
+    color: "rgba(255, 255, 255, 0.84)",
+    "&:hover": {
+      color: "inherit"
+    },
+    "&:active": {
+      color: "inherit"
+    },
+    "&:focus": {
+      color: "inherit"
+    }
+  }
+});
+
+const CustomTableCell = withStyles(theme => ({
+  head: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white
+  },
+  body: {
+    fontSize: 14
+  }
+}))(TableCell);
 
 class GeneReactTableHead extends React.Component {
   createSortHandler = property => event => {
@@ -27,6 +53,7 @@ class GeneReactTableHead extends React.Component {
   };
 
   render() {
+    let { classes } = this.props;
     const {
       onSelectAllClick,
       order,
@@ -40,16 +67,17 @@ class GeneReactTableHead extends React.Component {
     return (
       <TableHead>
         <TableRow>
-          <TableCell padding="checkbox">
+          <CustomTableCell padding="checkbox">
             <Checkbox
+              className={classes.checkAll}
               indeterminate={numSelected > 0 && numSelected < rowCount}
               checked={numSelected === rowCount}
               onChange={onSelectAllClick}
             />
-          </TableCell>
+          </CustomTableCell>
           {rows.map(row => {
             return (
-              <TableCell
+              <CustomTableCell
                 key={row.id}
                 numeric={row.numeric}
                 padding={row.disablePadding ? "none" : "default"}
@@ -61,6 +89,7 @@ class GeneReactTableHead extends React.Component {
                   enterDelay={300}
                 >
                   <TableSortLabel
+                    className={classes.tableSortLabel}
                     active={orderBy === row.id}
                     direction={order}
                     onClick={this.createSortHandler(row.id)}
@@ -68,7 +97,7 @@ class GeneReactTableHead extends React.Component {
                     {row.label}
                   </TableSortLabel>
                 </Tooltip>
-              </TableCell>
+              </CustomTableCell>
             );
           }, this)}
         </TableRow>

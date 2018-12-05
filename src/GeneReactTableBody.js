@@ -19,7 +19,13 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import { lighten } from "@material-ui/core/styles/colorManipulator";
 
-const styles = theme => ({});
+const styles = theme => ({
+  row: {
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.background.default
+    }
+  }
+});
 
 function desc(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -48,14 +54,6 @@ function getSorting(order, orderBy) {
 }
 
 class GeneReactTableBody extends React.Component {
-  // state = {
-  //   order: "asc",
-  //   orderBy: "calories",
-  //   selected: [],
-  //   data: [],
-  //   page: 0,
-  //   rowsPerPage: 5
-  // };
   /**
    * GeneReactTableBody componentWillMount
    * @return {[type]} [description]
@@ -128,6 +126,7 @@ class GeneReactTableBody extends React.Component {
                 tabIndex={-1}
                 key={n.id}
                 selected={isSelected}
+                className={classes.row}
               >
                 <TableCell padding="checkbox">
                   <Checkbox checked={isSelected} />

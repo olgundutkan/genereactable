@@ -2,53 +2,52 @@ import React from "react";
 import { render } from "react-dom";
 import GeneReactTable from "../../src";
 
+let counter = 0;
+function createData(name, calories, fat, carbs, protein) {
+  counter += 1;
+  return { id: counter, name, calories, fat, carbs, protein };
+}
 class Example extends React.Component {
   render() {
     const columns = ["Name", "Title", "Location", "Age", "Salary"];
 
+    const rows = [
+      {
+        id: "name",
+        numeric: false,
+        disablePadding: true,
+        label: "Dessert (100g serving)"
+      },
+      {
+        id: "calories",
+        numeric: true,
+        disablePadding: false,
+        label: "Calories"
+      },
+      { id: "fat", numeric: true, disablePadding: false, label: "Fat (g)" },
+      { id: "carbs", numeric: true, disablePadding: false, label: "Carbs (g)" },
+      {
+        id: "protein",
+        numeric: true,
+        disablePadding: false,
+        label: "Protein (g)"
+      }
+    ];
+
     const data = [
-      ["Gabby George", "Business Analyst", "Minneapolis", 30, 100000],
-      ["Aiden Lloyd", "Business Consultant", "Dallas", 55, 200000],
-      ["Jaden Collins", "Attorney", "Santa Ana", 27, 500000],
-      ["Franky Rees", "Business Analyst", "St. Petersburg", 22, 50000],
-      ["Aaren Rose", "Business Consultant", "Toledo", 28, 75000],
-      ["Blake Duncan", "Business Management Analyst", "San Diego", 65, 94000],
-      ["Frankie Parry", "Agency Legal Counsel", "Jacksonville", 71, 210000],
-      ["Lane Wilson", "Commercial Specialist", "Omaha", 19, 65000],
-      ["Robin Duncan", "Business Analyst", "Los Angeles", 20, 77000],
-      ["Mel Brooks", "Business Consultant", "Oklahoma City", 37, 135000],
-      ["Harper White", "Attorney", "Pittsburgh", 52, 420000],
-      ["Kris Humphrey", "Agency Legal Counsel", "Laredo", 30, 150000],
-      ["Frankie Long", "Industrial Analyst", "Austin", 31, 170000],
-      ["Brynn Robbins", "Business Analyst", "Norfolk", 22, 90000],
-      ["Justice Mann", "Business Consultant", "Chicago", 24, 133000],
-      [
-        "Addison Navarro",
-        "Business Management Analyst",
-        "New York",
-        50,
-        295000
-      ],
-      ["Jesse Welch", "Agency Legal Counsel", "Seattle", 28, 200000],
-      ["Eli Mejia", "Commercial Specialist", "Long Beach", 65, 400000],
-      ["Gene Leblanc", "Industrial Analyst", "Hartford", 34, 110000],
-      ["Danny Leon", "Computer Scientist", "Newark", 60, 220000],
-      ["Lane Lee", "Corporate Counselor", "Cincinnati", 52, 180000],
-      ["Jesse Hall", "Business Analyst", "Baltimore", 44, 99000],
-      ["Danni Hudson", "Agency Legal Counsel", "Tampa", 37, 90000],
-      ["Terry Macdonald", "Commercial Specialist", "Miami", 39, 140000],
-      ["Justice Mccarthy", "Attorney", "Tucson", 26, 330000],
-      ["Silver Carey", "Computer Scientist", "Memphis", 47, 250000],
-      ["Franky Miles", "Industrial Analyst", "Buffalo", 49, 190000],
-      ["Glen Nixon", "Corporate Counselor", "Arlington", 44, 80000],
-      [
-        "Gabby Strickland",
-        "Business Process Consultant",
-        "Scottsdale",
-        26,
-        45000
-      ],
-      ["Mason Ray", "Computer Scientist", "San Francisco", 39, 142000]
+      createData("Cupcake", 305, 3.7, 67, 4.3),
+      createData("Donut", 452, 25.0, 51, 4.9),
+      createData("Eclair", 262, 16.0, 24, 6.0),
+      createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
+      createData("Gingerbread", 356, 16.0, 49, 3.9),
+      createData("Honeycomb", 408, 3.2, 87, 6.5),
+      createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
+      createData("Jelly Bean", 375, 0.0, 94, 0.0),
+      createData("KitKat", 518, 26.0, 65, 7.0),
+      createData("Lollipop", 392, 0.2, 98, 0.0),
+      createData("Marshmallow", 318, 0, 81, 2.0),
+      createData("Nougat", 360, 19.0, 9, 37.0),
+      createData("Oreo", 437, 18.0, 63, 4.0)
     ];
 
     const options = {
@@ -89,6 +88,12 @@ class Example extends React.Component {
     return (
       <GeneReactTable
         title={"ACME Employee list"}
+        order={"asc"}
+        orderBy={"calories"}
+        selected={[]}
+        page={0}
+        rowsPerPage={5}
+        rows={rows}
         data={data}
         columns={columns}
         options={options}

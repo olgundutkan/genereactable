@@ -57,19 +57,6 @@ function getSorting(order, orderBy) {
     : (a, b) => -desc(a, b, orderBy);
 }
 
-const rows = [
-  {
-    id: "name",
-    numeric: false,
-    disablePadding: true,
-    label: "Dessert (100g serving)"
-  },
-  { id: "calories", numeric: true, disablePadding: false, label: "Calories" },
-  { id: "fat", numeric: true, disablePadding: false, label: "Fat (g)" },
-  { id: "carbs", numeric: true, disablePadding: false, label: "Carbs (g)" },
-  { id: "protein", numeric: true, disablePadding: false, label: "Protein (g)" }
-];
-
 const theme = createMuiTheme({
   typography: {
     useNextVariants: true
@@ -91,26 +78,13 @@ const styles = theme => ({
 
 class GeneReactTable extends React.Component {
   state = {
-    order: "asc",
-    orderBy: "calories",
-    selected: [],
-    data: [
-      createData("Cupcake", 305, 3.7, 67, 4.3),
-      createData("Donut", 452, 25.0, 51, 4.9),
-      createData("Eclair", 262, 16.0, 24, 6.0),
-      createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-      createData("Gingerbread", 356, 16.0, 49, 3.9),
-      createData("Honeycomb", 408, 3.2, 87, 6.5),
-      createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-      createData("Jelly Bean", 375, 0.0, 94, 0.0),
-      createData("KitKat", 518, 26.0, 65, 7.0),
-      createData("Lollipop", 392, 0.2, 98, 0.0),
-      createData("Marshmallow", 318, 0, 81, 2.0),
-      createData("Nougat", 360, 19.0, 9, 37.0),
-      createData("Oreo", 437, 18.0, 63, 4.0)
-    ],
-    page: 0,
-    rowsPerPage: 5
+    order: this.props.order,
+    orderBy: this.props.orderBy,
+    selected: this.props.selected,
+    rows: this.props.rows,
+    data: this.props.data,
+    page: this.props.page,
+    rowsPerPage: this.props.rowsPerPage
   };
 
   handleRequestSort = (event, property) => {
@@ -195,10 +169,8 @@ class GeneReactTable extends React.Component {
    * @return {[type]} [description]
    */
   componentWillReceiveProps(nextProps, nextContext) {
-    console.log("GeneReactTable componentWillReceiveProps");
-    // this.state = {
-    //   ...nextProps
-    // };
+    console.log("GeneReactTable componentWillReceiveProps ", nextProps);
+    this.this.setState({ ...nextProps });
   }
   /**
    * GeneReactTable componentWillMount
@@ -217,7 +189,15 @@ class GeneReactTable extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
+    const {
+      rows,
+      data,
+      order,
+      orderBy,
+      selected,
+      rowsPerPage,
+      page
+    } = this.state;
     const emptyRows =
       rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
@@ -272,14 +252,32 @@ class GeneReactTable extends React.Component {
  * Set default props of GeneReactTable component
  * @type {Object}
  */
-GeneReactTable.defaultProps = {};
+GeneReactTable.defaultProps = {
+  order: "asc",
+  orderBy: "",
+  selected: [],
+  rows: [],
+  data: [],
+  page: 0,
+  rowsPerPage: 5
+};
 
 /**
  * Validate props of GeneReactTable component
  * @type {Object}
  */
 GeneReactTable.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
+  order: PropTypes.string.isRequired,
+  orderBy: PropTypes.string.isRequired,
+  selected: PropTypes.array.isRequired,
+  page: PropTypes.number.isRequired,
+  rowsPerPage: PropTypes.number.isRequired,
+  rows: PropTypes.array.isRequired,
+  data: PropTypes.array.isRequired,
+  columns: PropTypes.array.isRequired,
+  options: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(GeneReactTable);

@@ -41,54 +41,73 @@ function getSorting(order, orderBy) {
 }
 
 class GeneReactTableBody extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
   /**
-   * GeneReactTableBody componentWillMount
-   * @return {[type]} [description]
+   * GeneReactTableBody Component Will Mount
+   * @return {[type]}
    */
   componentWillMount() {
     console.log("GeneReactTableBody componentWillMount");
   }
   /**
-   * GeneReactTableBody componentWillMount
-   * @return {[type]} [description]
+   * GeneReactTableBody Component Will Receive Props
+   * @param  {[type]} nextProps
+   * @return {[type]}
+   */
+  componentWillReceiveProps(nextProps, nextContext) {
+    console.log("GeneReactTableBody componentWillReceiveProps ", nextProps);
+    this.setState({ ...nextProps });
+  }
+  /**
+   * GeneReactTableBody Component Did Mount
+   * @return {[type]}
    */
   componentDidMount() {
     console.log("GeneReactTableBody componentDidMount");
   }
   /**
-   * GeneReactTableBody componentWillMount
-   * @return {[type]} [description]
+   * GeneReactTableBody Component Should Update
+   * @param  {[type]} nextProps
+   * @param  {[type]} nextState
+   * @return {[type]}
    */
-  componentWillUpdate() {
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("GeneReactTableBody shouldComponentUpdate");
+    return true;
+  }
+  /**
+   * GeneReactTableBody Component Will Update
+   * @param  {[type]} nextProps
+   * @param  {[type]} nextState
+   * @return {[type]}
+   */
+  componentWillUpdate(nextProps, nextState) {
     console.log("GeneReactTableBody componentWillUpdate");
   }
   /**
-   * GeneReactTableBody componentWillMount
-   * @return {[type]} [description]
+   * GeneReactTableBody Component Did Update
+   * @param  {[type]} nextProps [description]
+   * @param  {[type]} nextState [description]
+   * @return {[type]}           [description]
    */
-  componentDidUpdate() {
+  componentDidUpdate(nextProps, nextState) {
     console.log("GeneReactTableBody componentDidUpdate");
   }
   /**
-   * GeneReactTableBody componentWillMount
-   * @return {[type]} [description]
-   */
-  componentWillReceiveProps(nextProps, nextContext) {
-    console.log("GeneReactTableBody componentWillReceiveProps");
-    this.setState({ ...nextProps });
-  }
-  /**
-   * GeneReactTableBody componentWillMount
-   * @return {[type]} [description]
+   * GeneReactTableBody Component Will Unmount
+   * @return {[type]}
    */
   componentWillUnmount() {
     console.log("GeneReactTableBody componentWillUnmount");
   }
   /**
-   * GeneReactTableBody componentWillMount
-   * @return {[type]} [description]
+   * GeneReactTableBody Component Did Catch Error
+   * @return {[type]}
    */
-  componentDidCatch() {
+  componentDidCatch(error, info) {
     console.log("GeneReactTableBody componentDidCatch");
   }
 
@@ -151,7 +170,15 @@ GeneReactTableBody.propTypes = {
  * @type {Object}
  */
 GeneReactTableBody.defaultProps = {
-  rows: []
+  rows: [],
+  data: [],
+  order: "asc",
+  orderBy: "",
+  page: 0,
+  rowsPerPage: 5,
+  emptyRows: 0
 };
 
-export default withStyles(styles)(GeneReactTableBody);
+export default withStyles(styles, { name: "GeneReactTableBody" })(
+  GeneReactTableBody
+);

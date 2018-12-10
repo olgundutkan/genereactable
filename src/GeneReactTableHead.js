@@ -37,6 +37,75 @@ const CustomTableCell = withStyles(theme => ({
 }))(TableCell);
 
 class GeneReactTableHead extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  /**
+   * GeneReactTableHead Component Will Mount
+   * @return {[type]}
+   */
+  componentWillMount() {
+    console.log("GeneReactTableHead componentWillMount");
+  }
+  /**
+   * GeneReactTableHead Component Will Receive Props
+   * @param  {[type]} nextProps
+   * @return {[type]}
+   */
+  componentWillReceiveProps(nextProps, nextContext) {
+    console.log("GeneReactTableHead componentWillReceiveProps ", nextProps);
+    // this.setState({ ...nextProps });
+  }
+  /**
+   * GeneReactTableHead Component Did Mount
+   * @return {[type]}
+   */
+  componentDidMount() {
+    console.log("GeneReactTableHead componentDidMount");
+  }
+  /**
+   * GeneReactTableHead Component Should Update
+   * @param  {[type]} nextProps
+   * @param  {[type]} nextState
+   * @return {[type]}
+   */
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("GeneReactTableHead shouldComponentUpdate");
+    return true;
+  }
+  /**
+   * GeneReactTableHead Component Will Update
+   * @param  {[type]} nextProps
+   * @param  {[type]} nextState
+   * @return {[type]}
+   */
+  componentWillUpdate(nextProps, nextState) {
+    console.log("GeneReactTableHead componentWillUpdate");
+  }
+  /**
+   * GeneReactTableHead Component Did Update
+   * @param  {[type]} nextProps [description]
+   * @param  {[type]} nextState [description]
+   * @return {[type]}           [description]
+   */
+  componentDidUpdate(nextProps, nextState) {
+    console.log("GeneReactTableHead componentDidUpdate");
+  }
+  /**
+   * GeneReactTableHead Component Will Unmount
+   * @return {[type]}
+   */
+  componentWillUnmount() {
+    console.log("GeneReactTableHead componentWillUnmount");
+  }
+  /**
+   * GeneReactTableHead Component Did Catch Error
+   * @return {[type]}
+   */
+  componentDidCatch(error, info) {
+    console.log("GeneReactTableHead componentDidCatch");
+  }
   createSortHandler = property => event => {
     this.props.onRequestSort(event, property);
   };
@@ -48,10 +117,9 @@ class GeneReactTableHead extends Component {
       order,
       orderBy,
       numSelected,
-      rowCount
+      rowCount,
+      rows
     } = this.props;
-
-    let { rows } = this.props;
 
     return (
       <TableHead>
@@ -115,7 +183,12 @@ GeneReactTableHead.propTypes = {
  * @type {Object}
  */
 GeneReactTableHead.defaultProps = {
-  rows: []
+  rows: [],
+  order: "asc",
+  numSelected: 0,
+  rowCount: 0
 };
 
-export default withStyles(styles)(GeneReactTableHead);
+export default withStyles(styles, { name: "GeneReactTableHead" })(
+  GeneReactTableHead
+);

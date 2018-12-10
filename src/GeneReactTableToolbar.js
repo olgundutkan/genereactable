@@ -36,12 +36,79 @@ const styles = theme => ({
 });
 
 class GeneReactTableToolbar extends Component {
+  /**
+   * GeneReactTableToolbar Component Will Mount
+   * @return {[type]}
+   */
+  componentWillMount() {
+    console.log("GeneReactTableToolbar componentWillMount");
+  }
+  /**
+   * GeneReactTableToolbar Component Will Receive Props
+   * @param  {[type]} nextProps
+   * @return {[type]}
+   */
+  componentWillReceiveProps(nextProps, nextContext) {
+    console.log("GeneReactTableToolbar componentWillReceiveProps ", nextProps);
+    // this.setState({ ...nextProps });
+  }
+  /**
+   * GeneReactTableToolbar Component Did Mount
+   * @return {[type]}
+   */
+  componentDidMount() {
+    console.log("GeneReactTableToolbar componentDidMount");
+  }
+  /**
+   * GeneReactTableToolbar Component Should Update
+   * @param  {[type]} nextProps
+   * @param  {[type]} nextState
+   * @return {[type]}
+   */
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("GeneReactTableToolbar shouldComponentUpdate");
+    return true;
+  }
+  /**
+   * GeneReactTableToolbar Component Will Update
+   * @param  {[type]} nextProps
+   * @param  {[type]} nextState
+   * @return {[type]}
+   */
+  componentWillUpdate(nextProps, nextState) {
+    console.log("GeneReactTableToolbar componentWillUpdate");
+  }
+  /**
+   * GeneReactTableToolbar Component Did Update
+   * @param  {[type]} nextProps [description]
+   * @param  {[type]} nextState [description]
+   * @return {[type]}           [description]
+   */
+  componentDidUpdate(nextProps, nextState) {
+    console.log("GeneReactTableToolbar componentDidUpdate");
+  }
+  /**
+   * GeneReactTableToolbar Component Will Unmount
+   * @return {[type]}
+   */
+  componentWillUnmount() {
+    console.log("GeneReactTableToolbar componentWillUnmount");
+  }
+  /**
+   * GeneReactTableToolbar Component Did Catch Error
+   * @return {[type]}
+   */
+  componentDidCatch(error, info) {
+    console.log("GeneReactTableToolbar componentDidCatch");
+  }
+
   createSortHandler = property => event => {
     this.props.onRequestSort(event, property);
   };
 
   render() {
-    const { numSelected, classes } = this.props;
+    const { classes } = this.props;
+    const { numSelected } = this.props;
 
     return (
       <Toolbar
@@ -93,6 +160,10 @@ GeneReactTableToolbar.propTypes = {
  * Set default props of GeneReactTableToolbar component
  * @type {Object}
  */
-GeneReactTableToolbar.defaultProps = {};
+GeneReactTableToolbar.defaultProps = {
+  numSelected: 0
+};
 
-export default withStyles(styles)(GeneReactTableToolbar);
+export default withStyles(styles, { name: "GeneReactTableToolbar" })(
+  GeneReactTableToolbar
+);

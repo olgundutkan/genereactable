@@ -58,15 +58,83 @@ const styles = theme => ({
 });
 
 class GeneReactTable extends React.Component {
-  state = {
-    order: this.props.order,
-    orderBy: this.props.orderBy,
-    selected: this.props.selected,
-    rows: this.props.rows,
-    data: this.props.data,
-    page: this.props.page,
-    rowsPerPage: this.props.rowsPerPage
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      order: props.order,
+      orderBy: props.orderBy,
+      selected: props.selected,
+      rows: props.rows,
+      data: props.data,
+      page: props.page,
+      rowsPerPage: props.rowsPerPage
+    };
+  }
+  /**
+   * GeneReactTable Component Will Mount
+   * @return {[type]}
+   */
+  componentWillMount() {
+    console.log("GeneReactTable componentWillMount");
+  }
+  /**
+   * GeneReactTable Component Will Receive Props
+   * @param  {[type]} nextProps
+   * @return {[type]}
+   */
+  componentWillReceiveProps(nextProps, nextContext) {
+    console.log("GeneReactTable componentWillReceiveProps ", nextProps);
+    // this.setState({ ...nextProps });
+  }
+  /**
+   * GeneReactTable Component Did Mount
+   * @return {[type]}
+   */
+  componentDidMount() {
+    console.log("GeneReactTable componentDidMount");
+  }
+  /**
+   * GeneReactTable Component Should Update
+   * @param  {[type]} nextProps
+   * @param  {[type]} nextState
+   * @return {[type]}
+   */
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("GeneReactTable shouldComponentUpdate");
+    return true;
+  }
+  /**
+   * GeneReactTable Component Will Update
+   * @param  {[type]} nextProps
+   * @param  {[type]} nextState
+   * @return {[type]}
+   */
+  componentWillUpdate(nextProps, nextState) {
+    console.log("GeneReactTable componentWillUpdate");
+  }
+  /**
+   * GeneReactTable Component Did Update
+   * @param  {[type]} nextProps [description]
+   * @param  {[type]} nextState [description]
+   * @return {[type]}           [description]
+   */
+  componentDidUpdate(nextProps, nextState) {
+    console.log("GeneReactTable componentDidUpdate");
+  }
+  /**
+   * GeneReactTable Component Will Unmount
+   * @return {[type]}
+   */
+  componentWillUnmount() {
+    console.log("GeneReactTable componentWillUnmount");
+  }
+  /**
+   * GeneReactTable Component Did Catch Error
+   * @return {[type]}
+   */
+  componentDidCatch(error, info) {
+    console.log("GeneReactTable componentDidCatch");
+  }
 
   handleRequestSort = (event, property) => {
     const orderBy = property;
@@ -117,56 +185,6 @@ class GeneReactTable extends React.Component {
   };
 
   isSelected = id => this.state.selected.indexOf(id) !== -1;
-  /**
-   * GeneReactTable componentWillMount
-   * @return {[type]} [description]
-   */
-  componentWillMount() {
-    console.log("GeneReactTable componentWillMount");
-  }
-  /**
-   * GeneReactTable componentWillMount
-   * @return {[type]} [description]
-   */
-  componentDidMount() {
-    console.log("GeneReactTable componentDidMount");
-  }
-  /**
-   * GeneReactTable componentWillMount
-   * @return {[type]} [description]
-   */
-  componentWillUpdate() {
-    console.log("GeneReactTable componentWillUpdate");
-  }
-  /**
-   * GeneReactTable componentWillMount
-   * @return {[type]} [description]
-   */
-  componentDidUpdate() {
-    console.log("GeneReactTable componentDidUpdate");
-  }
-  /**
-   * GeneReactTable componentWillMount
-   * @return {[type]} [description]
-   */
-  componentWillReceiveProps(nextProps, nextContext) {
-    console.log("GeneReactTable componentWillReceiveProps ", nextProps);
-    this.this.setState({ ...nextProps });
-  }
-  /**
-   * GeneReactTable componentWillMount
-   * @return {[type]} [description]
-   */
-  componentWillUnmount() {
-    console.log("GeneReactTable componentWillUnmount");
-  }
-  /**
-   * GeneReactTable componentWillMount
-   * @return {[type]} [description]
-   */
-  componentDidCatch() {
-    console.log("GeneReactTable componentDidCatch");
-  }
 
   render() {
     const { classes } = this.props;
@@ -261,4 +279,4 @@ GeneReactTable.propTypes = {
   options: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(GeneReactTable);
+export default withStyles(styles, { name: "GeneReactTable" })(GeneReactTable);

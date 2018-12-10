@@ -55,7 +55,7 @@ class GeneReactTableHead extends Component {
    */
   componentWillReceiveProps(nextProps, nextContext) {
     console.log("GeneReactTableHead componentWillReceiveProps ", nextProps);
-    // this.setState({ ...nextProps });
+    this.setState({ ...nextProps });
   }
   /**
    * GeneReactTableHead Component Did Mount

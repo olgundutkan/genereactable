@@ -50,7 +50,7 @@ class GeneReactTableToolbar extends Component {
    */
   componentWillReceiveProps(nextProps, nextContext) {
     console.log("GeneReactTableToolbar componentWillReceiveProps ", nextProps);
-    // this.setState({ ...nextProps });
+    this.setState({ ...nextProps });
   }
   /**
    * GeneReactTableToolbar Component Did Mount
